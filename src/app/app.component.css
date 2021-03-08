@@ -1,0 +1,45 @@
+.logo{
+    color: blue;
+    font-weight: bolder;
+    font-size: xx-large;
+    margin-right: 200px;
+}
+
+.dropdown-toggle::after {
+    color:darkgreen;
+    
+}
+
+.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active{
+    color:darkgreen;
+    font-weight: 800;
+}
+
+.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link{
+    color:black;
+}
+
+.myDiv{
+    position:absolute;
+    left:15px;
+    top: 15px;
+}
+
+.myDiv2{
+    position:absolute;
+    right:15px;
+    bottom: 15px;
+}
+
+.titleBlue{
+    color: blue;
+    font-weight: bolder;
+}
+
+.currencyBlack {
+    text-align: center;
+    font-weight: bolder;
+    font-size: x-large;
+}
+
+
