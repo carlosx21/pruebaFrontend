@@ -9,48 +9,51 @@ import { ApiPruebaService } from './services/api-prueba.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'pruebaFrontend';
+  
+  // Variable de apoyo para los tabs
   active = 1;
 
+  // Lista de propiedades consultadas
   lstPropiedades: Propiedad[] = [];
- 
+  // Variable de propiedad seleccionada
   selectPropiedad: Propiedad = new Propiedad();
 
-  cantidadPropiedad = 0;
+  // Contadores para el carosuel
+  cantPropiedad = 0;
   countNext: number = 0;
-
+  // variable de apoyo para imagenes
   images: string[] = [];
 
-   // Configuración de Google Maps 
-   
-   center = {lat:0, lng: 0};   
-   zoom = 17;
-   marker!: any ;
-   display?: google.maps.LatLngLiteral;
+  // Configuración de Google Maps 
+  center = { lat: 0, lng: 0 };
+  zoom = 17;
+  marker!: any;
+  display?: google.maps.LatLngLiteral;
 
-  constructor( private apipruebaServ: ApiPruebaService ) { }
+  constructor(private apipruebaServ: ApiPruebaService) { }
 
 
   ngOnInit() {
 
     this.selectPropiedad.details = new Detail();
 
+    // Se traen las propiedades disponibles
     this.apipruebaServ.getPropiedades()
-      .subscribe( resp => {
+      .subscribe(resp => {
         this.lstPropiedades = resp;
-        console.log(this.lstPropiedades);
-        this.cantidadPropiedad = this.lstPropiedades.length;
+        this.cantPropiedad = this.lstPropiedades.length;
         this.loadPropiedad(this.lstPropiedades[0]);
       });
 
   }
 
-  loadPropiedad(propiedadSelec: Propiedad){
+  loadPropiedad(propiedadSelec: Propiedad) {
     this.selectPropiedad = propiedadSelec;
 
-     this.center.lat = this.selectPropiedad.location.latitude;
-     this.center.lng = this.selectPropiedad.location.longitude;
+    this.center.lat = this.selectPropiedad.location.latitude;
+    this.center.lng = this.selectPropiedad.location.longitude;
 
+    // Se crea un marcador para el mapa
     this.marker = {
       position: {
         lat: this.selectPropiedad.location.latitude,
@@ -61,31 +64,34 @@ export class AppComponent {
         text: 'Ubicacion de la propiedad  ',
       },
       title: 'Ubicacion de la propiedad ',
-      info: 'Ubicacion de la propiedad ' ,
+      info: 'Ubicacion de la propiedad ',
       options: {
         animation: google.maps.Animation.BOUNCE,
       },
     }
 
+    // Se consultan las imagenes de la propiedad seleccionada
     this.apipruebaServ.getImages(this.selectPropiedad.helperid)
-      .subscribe( resp => {
-          this.images = resp.images;
+      .subscribe(resp => {
+        this.images = resp.images;
       });
   }
 
-  siguientePropiedad(){
-    this.countNext = this.countNext+1;
-    if(this.cantidadPropiedad > this.countNext ) {
+  // Boton siguiente de propiedades
+  nextPropiedad() {
+    this.countNext = this.countNext + 1;
+    if (this.cantPropiedad > this.countNext) {
       this.loadPropiedad(this.lstPropiedades[this.countNext]);
     } else {
       this.countNext = 0;
       this.loadPropiedad(this.lstPropiedades[this.countNext]);
     }
-    
+
   }
 
-  clickvermapa(){
-    this.active =2;
+  // Funcion utilizada para cambiar el tab al mapa
+  clickMap() {
+    this.active = 2;
   }
 
 }

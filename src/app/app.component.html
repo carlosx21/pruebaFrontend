@@ -46,7 +46,7 @@
            </li>
          </ul>
          <form class="form-inline my-2 my-lg-0">
-           <button class="btn btn-success my-2 my-sm-0 rounded-pill" type="button" (click)="siguientePropiedad()">Ver Siguiente</button>
+           <button class="btn btn-success my-2 my-sm-0 rounded-pill" type="button" (click)="nextPropiedad()">Ver Siguiente</button>
          </form>
        </div>
      </nav>
@@ -99,7 +99,7 @@
             <div class="titleBlue">{{ selectPropiedad.title }}</div>
             <div>{{ selectPropiedad.address }}</div>
         </div>
-        <div class="col-md-3 stackem" (click)="clickvermapa()" style="background-image: url('../assets/images/mapback.png');background-size: cover;background-repeat: no-repeat;">
+        <div class="col-md-3 stackem" (click)="clickMap()" style="background-image: url('../assets/images/mapback.png');background-size: cover;background-repeat: no-repeat;">
             <div style="text-align: center; color: darkgreen;"><i class="fas fa-map-marker-alt"></i></div>
             <div style="text-align: center;">Ver en mapa</div>
         </div>
@@ -206,7 +206,7 @@
                 
             </div>
             <div class="col-md-4">
-                <button class="btn btn-success my-2 my-sm-0 rounded-pill btn-lg" type="submit" (click)="siguientePropiedad()">Ver Siguiente</button>
+                <button class="btn btn-success my-2 my-sm-0 rounded-pill btn-lg" type="submit" (click)="nextPropiedad()">Ver Siguiente</button>
             </div>
             <div class="col-md-4">
                 

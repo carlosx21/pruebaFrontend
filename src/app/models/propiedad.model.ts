@@ -7,9 +7,9 @@ export class Propiedad {
    public description!: string;
    public id!: number;
    public price!: number;
-   public tags!: string[] ;
+   public tags!: string[];
    public title!: string;
    public details!: Detail;
-   public location!: Maplocation; 
+   public location!: Maplocation;
    public helperid!: number;
 }

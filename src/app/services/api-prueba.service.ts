@@ -11,34 +11,37 @@ export class ApiPruebaService {
 
   constructor(private http: HttpClient) { }
 
+  // Url de la API 
   private url = 'https://rtfe-test-default-rtdb.firebaseio.com/';
 
+  // Retorna todas las propiedades
   getPropiedades() {
-    return this.http.get<Propiedad[]>(`${ this.url }/properties.json`).pipe(
-      map( this.crearArreglo ),
+    return this.http.get<Propiedad[]>(`${this.url}/properties.json`).pipe(
+      map(this.crearArrayProperty),
       delay(0)
     );
   }
 
-  getImages(id: number){
-    return this.http.get<Image>(`${ this.url }/property_images/${id}.json`);
+  // Retorna todas las imagenes de una propiedad
+  getImages(id: number) {
+    return this.http.get<Image>(`${this.url}/property_images/${id}.json`);
   }
 
 
-  private crearArreglo( propiedadObj: any ) {
+  private crearArrayProperty(propiedadObj: any) {
 
-    const propiedades: Propiedad[] = [];
+    const lstProperty: Propiedad[] = [];
 
-    Object.keys( propiedadObj ).forEach( (key: any) => {
+    Object.keys(propiedadObj).forEach((key: any) => {
 
-      if(!isNaN(+key)){
+      if (!isNaN(+key)) {
         const propiedad: Propiedad = propiedadObj[key];
         propiedad.helperid = key;
-        propiedades.push(propiedad);
+        lstProperty.push(propiedad);
       }
     });
 
-    return propiedades;
+    return lstProperty;
 
   }
 }
